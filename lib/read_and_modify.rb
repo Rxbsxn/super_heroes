@@ -9,11 +9,14 @@ class ReadAndModify
   end
 
   def heroes
-    parse_to_hash.each do |hero|
-      if isBatman(hero)
-        batman(hero)
-      else not_batman(hero)
-      end
+    heroes_each { |x|
+      isBatman(x) ? batman(x) : not_batman(x)
+    }
+  end
+
+  def heroes_each
+      parse_to_hash.each do |hero|
+        yield hero
     end
   end
 
