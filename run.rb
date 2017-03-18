@@ -3,8 +3,10 @@ require_relative 'lib/save_as_json'
 require_relative 'lib/read_and_modify'
 require_relative 'lib/save_as_xml'
 
-input_data = Input.data
-SaveAsJson.new(input_data).save_json
+set_input = 'input.json'
 
-hash_to_xml = ReadAndModify.new.heroes
-SaveAsXML.new(hash_to_xml).save_xml
+input_data = Input.data
+SaveAsJson.new(input_data, set_input).save_json
+
+hash_to_xml = ReadAndModify.new(set_input).heroes_with_gadgets
+SaveAsXML.new(hash_to_xml).save_to_xml

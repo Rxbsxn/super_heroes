@@ -1,6 +1,13 @@
 require 'nokogiri'
 class SaveAsXML < Struct.new(:input)
-  def build
+
+  def save_to_xml
+    File.write('output.xml', to_xml)
+  end
+
+  private
+
+  def build_xml
     Nokogiri::XML::Builder.new do |xml|
       xml.data do
         input.each do |obj|
@@ -18,10 +25,6 @@ class SaveAsXML < Struct.new(:input)
   end
 
   def to_xml
-    build.doc.root.to_s
-  end
-
-  def save_xml
-    File.write('output.xml', to_xml)
+    build_xml.doc.root.to_s
   end
 end

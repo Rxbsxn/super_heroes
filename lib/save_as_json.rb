@@ -1,11 +1,14 @@
 require 'json'
 
-class SaveAsJson < Struct.new(:hash)
-  def hash_to_json
-    hash.to_json
+class SaveAsJson < Struct.new(:hash, :json_output)
+  
+  def save_json
+    File.write(json_output, hash_to_json)
   end
 
-  def save_json
-    File.write('input.json', hash_to_json)
+  private
+  
+  def hash_to_json
+    hash.to_json
   end
 end
